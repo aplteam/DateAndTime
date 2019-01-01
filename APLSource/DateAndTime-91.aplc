@@ -88,15 +88,8 @@
       :Access Public Shared
       ⍝ * 1.5.0
       ⍝   * Converted from the APL wiki to GitHub.
-      ⍝ * 1.4.0
-      ⍝   * Method `FileDate2Timestap` introduced.
-      ⍝   * Documentation improved.
-      ⍝ * 1.3.0:
-      ⍝   * Method `History` introduced.
-      ⍝   * Now managed by acre 3.
-      ⍝ * 1.2.0: Requires now at least Dyalog 15.0 Unicode.
-      ⍝ * 1.1.0: Doc converted to Markdown (requires at least ADOC 5.0)
-      ⍝ Few more examples and one more test case.
+      ⍝\\
+      ⍝ For information regarding older versions see <https://github.com/aplteam/DateAndTime/releases>
     ∇
 
     :Field ReadOnly Public Shared WeekDays←'Monday' 'Tuesday' 'Wednesday' 'Thursday' 'Friday' 'Saturday' 'Sunday'

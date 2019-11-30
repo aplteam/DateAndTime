@@ -1,8 +1,0 @@
- R←Test_019(stopFlag batchFlag);⎕TRAP;buf
-⍝ Test `WeekNo_US`.
- ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
-
- →FailsIf 1 1 2≢##.DateAndTime.WeekNo_US¨{2016 1 ⍵}¨1+⍳3
-
- R←∆OK

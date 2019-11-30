@@ -1,0 +1,9 @@
+ R←Test_020(stopFlag batchFlag);⎕TRAP;buf;days
+⍝ Test `WeekDays`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ days←'Monday' 'Tuesday' 'Wednesday' 'Thursday' 'Friday' 'Saturday' 'Sunday'
+ →T.FailsIf days≢##.DateAndTime.WeekDays
+
+ R←T._OK

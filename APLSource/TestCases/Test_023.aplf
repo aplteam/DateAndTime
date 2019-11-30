@@ -1,0 +1,19 @@
+ R←Test_023(stopFlag batchFlag);⎕TRAP;folder;filename;tno;ts
+⍝ Test `DateFrom_Year_WeekNumberUS`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ folder←##.FilesAndDirs.GetTempPath
+ filename←folder,⎕AN,'_',' '~⍨⍕⎕TS
+ tno←filename ⎕FCREATE 0
+ ⍬ ⎕FAPPEND tno
+ ts←##.DateAndTime.FileDate2Timestap⊢/⎕FRDCI tno 1
+ →T.GoToTidyUp(5↑ts)≢5↑⎕TS
+
+ R←T._OK
+
+∆TidyUp:
+ :Trap 0
+     ⎕FUNTIE tno
+     ##.FilesAndDirs.DeleteFile filename
+ :EndTrap

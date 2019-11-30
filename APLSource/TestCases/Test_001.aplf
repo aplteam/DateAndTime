@@ -1,0 +1,12 @@
+ R←Test_001(stopFlag batchFlag);⎕TRAP
+⍝ Test `FormatDateTime`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf'2015-01-01 00:00:00'≢##.DateAndTime.FormatDateTime 20150101
+ →T.FailsIf'2015-12-31 00:00:00'≢##.DateAndTime.FormatDateTime 20151231
+ →T.FailsIf'2015-12-31 23:54:58'≢##.DateAndTime.FormatDateTime 20151231.235458
+ →T.FailsIf(↑'1000-02-29 00:00:00' '2015-12-31 23:54:58')≢##.DateAndTime.FormatDateTime 10000229 20151231.235458
+ →T.FailsIf 0 19≢⍴##.DateAndTime.FormatDateTime ⍬
+
+ R←T._OK

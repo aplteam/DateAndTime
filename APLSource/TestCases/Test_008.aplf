@@ -1,0 +1,10 @@
+ R←Test_008(stopFlag batchFlag);⎕TRAP;buf
+⍝ Test `DateTime2Month`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf(2+2015×12)≢##.DateAndTime.DateTime2Month 20150228.010203
+ →T.FailsIf(2+2015 2016×12)≢##.DateAndTime.DateTime2Month 20150228.010203 20160229.010203
+ →T.FailsIf(2 2⍴2+2015 2016×12)≢##.DateAndTime.DateTime2Month 2 2⍴20150228.010203 20160229.010203
+
+ R←T._OK

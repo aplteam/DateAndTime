@@ -1,0 +1,33 @@
+ R←Test_003(stopFlag batchFlag);⎕TRAP;buf
+⍝ Test `AddPeriod2DateTime`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf 20161231≠0 ##.DateAndTime.AddPeriod2DateTime 20161231
+ →T.FailsIf 20170301≢0 2 ##.DateAndTime.AddPeriod2DateTime 20161229
+ →T.FailsIf 20160229≢0 2 ##.DateAndTime.AddPeriod2DateTime 20151229
+ →T.FailsIf 20161231≢0 0 2 ##.DateAndTime.AddPeriod2DateTime 20161229
+ →T.FailsIf 20161229.032345≢0 0 0 2 ##.DateAndTime.AddPeriod2DateTime 20161229.012345
+ →T.FailsIf 20161230.022345≢0 0 0 25 ##.DateAndTime.AddPeriod2DateTime 20161229.012345
+ →T.FailsIf 20161229.014845≢0 0 0 0 25 ##.DateAndTime.AddPeriod2DateTime 20161229.012345
+ →T.FailsIf 20161229.012348≢0 0 0 0 0 3 ##.DateAndTime.AddPeriod2DateTime 20161229.012345
+ →T.FailsIf 20000101≠0 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030101≠3 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030201≠3 1 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203≠3 1 2 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.04≠3 1 2 4 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.23≠3 1 2 23 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030204≠3 1 2 24 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.0405≠3 1 2 4 5 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.0459≠3 1 2 4 59 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.05≠3 1 2 4 60 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.040507≠3 1 2 4 5 7 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.040607≠3 1 2 4 5 67 ##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.040607 20040101≢(↑(3 1 2 4 5 67)(6↑4))##.DateAndTime.AddPeriod2DateTime 20000101
+ →T.FailsIf 20030203.040607 20130204.164103≢3 1 2 4 5 67 ##.DateAndTime.AddPeriod2DateTime 20000101 20100102.123456
+ →T.FailsIf 20030203.040607 20021103.14182≢3 1 2 4 5 67 ##.DateAndTime.AddPeriod2DateTime 20000101 19991001.101213
+ buf←↑(20010304.040507 20110304.040507 20010307.030625)(20010305.040507 20110305.040507 20010308.030625)(20010306.040507 20110306.040507 20010309.030625)
+ →T.FailsIf buf≢0 1 2∘.+1 2 3 4 5 6 ##.DateAndTime.AddPeriod2DateTime 20000101.000001 20100101.000001 19991231.230119
+ →T.FailsIf 20130301≢¯3 ¯10 ##.DateAndTime.AddPeriod2DateTime 20161229
+
+ R←T._OK

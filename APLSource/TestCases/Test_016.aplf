@@ -1,0 +1,10 @@
+ R←Test_016(stopFlag batchFlag);⎕TRAP;buf
+⍝ Test `DayOfWeekAsNumber`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf(##.DateAndTime.DayOfWeekAsNumber↑{2016 1 ⍵}¨1+⍳31)≢31⍴4↓50⍴1+⍳7
+ →T.FailsIf(##.DateAndTime.DayOfWeekAsNumber↑{2008 1 ⍵}¨1+⍳31)≢31⍴1↓50⍴1+⍳7
+ →T.FailsIf(##.DateAndTime.DayOfWeekAsNumber↑{2015 12 ⍵}¨1+⍳31)≢31⍴1↓50⍴1+⍳7
+
+ R←T._OK

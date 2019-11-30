@@ -1,0 +1,8 @@
+ R←Test_100(stopFlag batchFlag);⎕TRAP
+⍝ Test `History`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf 0≠⊃⊃⎕AT'##.DateAndTime.History'
+
+ R←T._OK

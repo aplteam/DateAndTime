@@ -1,0 +1,10 @@
+ R←Test_014(stopFlag batchFlag);⎕TRAP;buf
+⍝ Test `DayOfWeek`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf(,⊂'Monday')≢##.DateAndTime.DayOfWeek 2016 2 29
+ →T.FailsIf(,⊂'Thursday')≢##.DateAndTime.DayOfWeek 2015 12 31
+ →T.FailsIf(2⍴⊂'Monday')≢##.DateAndTime.DayOfWeek↑(2016 2 29)(1753 1 1)
+
+ R←T._OK

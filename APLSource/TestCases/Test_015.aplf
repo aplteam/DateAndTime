@@ -1,0 +1,19 @@
+ R←Test_015(stopFlag batchFlag);⎕TRAP;buf
+⍝ Test `DaysInMonth`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf 31≠12 ##.DateAndTime.DaysInMonth 2016
+ →T.FailsIf 31≠12 ##.DateAndTime.DaysInMonth 2015
+ →T.FailsIf 28≠2 ##.DateAndTime.DaysInMonth 2015
+ →T.FailsIf 29≠2 ##.DateAndTime.DaysInMonth 2016
+ →T.FailsIf 0≠⊃⍬ ##.DateAndTime.DaysInMonth 2015
+
+ :Trap 11
+     {}13 ##.DateAndTime.DaysInMonth 2016
+     →T.FailsIf 1
+ :Else
+     →T.FailsIf'Invalid month'≢⊃⎕DM
+ :EndTrap
+
+ R←T._OK

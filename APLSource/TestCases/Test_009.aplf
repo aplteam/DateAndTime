@@ -1,0 +1,10 @@
+ R←Test_009(stopFlag batchFlag);⎕TRAP;buf
+⍝ Test `DateTime2Timestamp`
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf 2016 2 29 1 2 3 0≢##.DateAndTime.DateTime2Timestamp 20160229.010203
+ →T.FailsIf(↑2⍴⊂2016 2 29 1 2 3 0)≢##.DateAndTime.DateTime2Timestamp 2⍴⊂20160229.010203
+ →T.FailsIf(↑2⍴⊂2016 2 29 1 2 3 0)≢##.DateAndTime.DateTime2Timestamp↑2⍴⊂20160229.010203
+
+ R←T._OK

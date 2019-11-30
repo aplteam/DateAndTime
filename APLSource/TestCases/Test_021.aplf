@@ -1,0 +1,27 @@
+ R←Test_021(stopFlag batchFlag);⎕TRAP
+⍝ Test `DateFrom_Year_WeekNumberISO`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ →T.FailsIf 2015 12 28≢##.DateAndTime.DateFrom_Year_WeekNumberISO 2015 53
+ →T.FailsIf 2016 2 15≢##.DateAndTime.DateFrom_Year_WeekNumberISO 2016 7
+ →T.FailsIf 2016 12 5≢##.DateAndTime.DateFrom_Year_WeekNumberISO 2016 49
+ →T.FailsIf 2016 12 26≢##.DateAndTime.DateFrom_Year_WeekNumberISO 2016 52
+ →T.FailsIf 2008 9 27≢'Saturday'##.DateAndTime.DateFrom_Year_WeekNumberISO 2008 39
+ →T.FailsIf 2015 12 29≢'Tuesday'##.DateAndTime.DateFrom_Year_WeekNumberISO 2015 53
+
+ :Trap 11
+     'Saturday'##.DateAndTime.DateFrom_Year_WeekNumberISO 2008 100
+     →T.FailsIf 1
+ :Else
+     →T.FailsIf'Invalid week number'≢⊃⎕DM
+ :EndTrap
+
+ :Trap 11
+     'saturday'##.DateAndTime.DateFrom_Year_WeekNumberISO 2008 24
+     →T.FailsIf 1
+ :Else
+     →T.FailsIf'Invalid day'{⍺≢(⍴,⍺)↑⍵}⊃⎕DM
+ :EndTrap
+
+ R←T._OK

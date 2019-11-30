@@ -1,9 +1,0 @@
- R←Test_005(stopFlag batchFlag);⎕TRAP;buf
-⍝ Test `DayDecimal2DateTime`
- ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
-
- →FailsIf{⍵≢##.DateAndTime.DateTime2DayDecimal ##.DateAndTime.DayDecimal2DateTime ⍵}12.23
- →FailsIf{⍵≢##.DateAndTime.DateTime2DayDecimal ##.DateAndTime.DayDecimal2DateTime ⍵}12.23 1234.345
-
- R←∆OK

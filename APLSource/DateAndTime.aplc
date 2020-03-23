@@ -81,13 +81,13 @@
 
     ∇ r←Version
       :Access Public Shared
-      r←({1↓⊃,/¯1↑⍵⊂⍨'.'=⍵}⍕⎕THIS)'1.5.0.3' '2018-02-19'
+      r←({1↓⊃,/¯1↑⍵⊂⍨'.'=⍵}⍕⎕THIS)'2.0.0.4' '2020-03-23'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 1.5.0
-      ⍝   * Converted from the APL wiki to GitHub.
+      ⍝ * 2.0.0
+      ⍝   * BREAKING CHANGE: File extension changed from .DYALOG to .APLC
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/DateAndTime/releases>
     ∇

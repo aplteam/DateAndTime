@@ -1,4 +1,4 @@
- R←Test_023(stopFlag batchFlag);⎕TRAP;folder;filename;tno;ts
+ R←Test_023(stopFlag batchFlag);⎕TRAP;folder;filename;tno;ts2;ts1
 ⍝ Test `DateFrom_Year_WeekNumberUS`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -7,8 +7,11 @@
  filename←folder,⎕AN,'_',' '~⍨⍕⎕TS
  tno←filename ⎕FCREATE 0
  ⍬ ⎕FAPPEND tno
- ts←##.DateAndTime.FileDate2Timestap⊢/⎕FRDCI tno 1
- →T.GoToTidyUp(5↑ts)≢5↑⎕TS
+ ts1←⊢/⎕FRDCI tno 1
+ ts1+←60×-/20 ⎕DT'JZ'      ⍝ Make it local
+ ts1←##.DateAndTime.FileDate2Timestap ts1
+ ts2←5↑⎕TS
+ →T.GoToTidyUp(5↑ts1)≢ts2
 
  R←T._OK
 

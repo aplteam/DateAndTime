@@ -81,7 +81,7 @@
 
     ∇ r←Version
       :Access Public Shared
-      r←'DateAndTime' '2.0.0.10' '2020-03-23'
+      r←'DateAndTime' '2.0.0.11' '2020-03-23'
     ∇
 
     ∇ History

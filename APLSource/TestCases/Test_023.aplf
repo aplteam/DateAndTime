@@ -3,7 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- folder←##.FilesAndDirs.GetTempPath
+ folder←FilesAndDirs.GetTempPath
  filename←folder,⎕AN,'_',' '~⍨⍕⎕TS
  tno←filename ⎕FCREATE 0
  ⍬ ⎕FAPPEND tno
@@ -18,5 +18,5 @@
 ∆TidyUp:
  :Trap 0
      ⎕FUNTIE tno
-     ##.FilesAndDirs.DeleteFile filename
+     FilesAndDirs.DeleteFile filename
  :EndTrap

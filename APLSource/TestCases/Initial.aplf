@@ -1,3 +1,2 @@
  Initial
- FilesAndDirs.PolishCurrentDir
  ⎕IO←0 ⋄ ⎕ML←1

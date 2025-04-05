@@ -1,8 +1,10 @@
- R←Test_100(stopFlag batchFlag);⎕TRAP
-⍝ Test `History`.
+ R←Test_100(stopFlag batchFlag);⎕TRAP;list
+⍝ Test `Public`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- →T.FailsIf 0≠⊃⊃⎕AT'##.DateAndTime.History'
+ list←##.DateAndTime.Public
+ →T.PassesIf 2<≢list                        ⍝ `Version` & `History` & at least one more
+ →T.PassesIf(≢list~'History' 'Public')=≢(##.DateAndTime.⎕NL-3)~'Public' 'Init'
 
  R←T._OK

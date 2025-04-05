@@ -1,0 +1,8 @@
+ R←Test_102(stopFlag batchFlag);⎕TRAP
+⍝ Test `Init`.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ ##.DateAndTime.Init
+
+ R←T._OK

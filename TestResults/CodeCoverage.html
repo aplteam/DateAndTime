@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Coverage</title>
+<meta charset="utf-8"/>
+<style>
+@media screen{
+    html {background-color: #FFFFF0;}
+body {
+    font-size: 16px;
+    font-family : Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+    margin: 1em;
+}
+th, td {padding: 5px 10px;}
+th {text-align: left;}
+h1, h2, h3, h4, h5, h6 {color: #424242;}
+h1 {font-size: 22px;}
+h2 {font-size: 18px; margin-top: 2em; margin-bottom:0.3em;}
+tbody tr:nth-child(even) {background-color: #F0F0F0;}
+tbody tr:nth-child(odd) {background-color: #FAFAFA;}
+th {background-color: #E6E6E6;color: #424242;}
+table {border: silver 1px solid; font-size: 14px;font-family: APLFont, monospace;}
+code , code a {font-size: 14px; font-family: APLFont, monospace;}
+code.header {
+    font-size: 16px; 
+    font-family: APLFont, monospace; 
+    margin: 1.5em 0.5em 0 0.5em; 
+    padding:0;
+    display: block;
+}
+div.code-block {
+    border: 1px silver dashed;
+    background-color: #F2F2F2;
+    display: block;
+    margin: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.5em;
+}
+div.code-block.missing {
+    background-color: #fa605254;
+}
+div.code-block code {display: block; white-space: pre-wrap; margin:0; padding:0; word-wrap: break-word;}
+.emphasize { font-weight: 800;}
+ul li, ol li {margin: 0.7em 0.2em;}
+.float-right {float:right;}
+.no-underline {    text-decoration :none;}
+.top-links {font-size:20px; padding-left: 0.6em;}
+.align-right {text-align: right;}
+#footer hr {margin-top:1.5em;}
+#footer p {margin-top:5px; padding-top:0; font-size: 9px;}
+@font-face {
+        font-family: "APLFont";
+    src:
+        local("APL385 Unicode"),
+        url("https://misc.aplteam.com/apl385.ttf") format("truetype");
+}
+.info {border: 1px silver dashed; background-color: #F2F2F2;margin: 0.5em; padding: 0.5em;}
+}
+@media print{@page {size: portrait}
+@page {
+    margin: 1cm 1cm 1cm 1.75cm;
+    @bottom-right {
+        content: counter(page) " / " counter(pages);
+  }
+}
+body {
+    font: 12pt "Times New Roman", Times, serif;
+    line-height: 1.2;
+     /* CSS3 filter, at the moment Webkit only. Prefix it for future implementations */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); /* future-proof */
+}
+h1 {font-size: 18pt;}
+h2 {font-size: 16pt; margin-top: 10pt; margin-bottom: 3pt;}
+th, td {padding: 2pt 3pt;}
+th {text-align: left;background-color: #DBDBDB;}
+tbody tr:nth-child(odd) {background-color: #EDEDED;}
+table {
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-size: 8pt;
+    font-family: APLFont, monospace;
+}
+div.keep-together {break-inside: avoid; break-before:auto;}
+table {border: silver 1pt solid;}
+code , code a {font-size: 8pt; font-family: APLFont, monospace;}
+code.header {
+    font-size: 8pt;
+    font-family: APLFont, monospace;
+    margin: 7pt 3pt 0 10pt;
+    padding:0;
+    display: block;
+}
+div.code-block {
+    border: 1pt silver dashed;
+    background-color: #F2F2F2;
+    display: block;
+    margin: 4pt 4pt 4pt 4pt;
+    padding: 4pt;
+}
+div.code-block code {display: block; white-space: pre-wrap; margin:0; padding:0; word-wrap: break-word;}
+.emphasize { font-weight: 800;}
+a {text-decoration: none;color: black;}
+ul li, ol li {margin: 8pt 3pt;}
+.no-print {display:none;}
+.align-right {text-align: right;}
+#footer hr {margin-top:1.5em;}
+#footer p {margin-top:5pt; padding-top:0; font-size: 6pt;}
+@font-face {
+        font-family: "APLFont";
+    src:
+        local("APL385 Unicode"),
+        url("https://misc.aplteam.com/apl385.ttf") format("truetype");
+}
+.info {border: 1px silver dashed; background-color: #F2F2F2;margin: 8px; padding: 8px;}
+}
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.2/b-2.0.0/b-print-2.0.0/fh-3.1.9/r-2.2.9/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.11.2/b-2.0.0/b-print-2.0.0/fh-3.1.9/r-2.2.9/datatables.min.js"></script>
+</head>
+<body>
+<h1 id="top">Coverage Report</h1>
+<p>Watched: 53 fns/opr within <code>#.DateAndTime.DateAndTime</code></p>
+<p>The test suite was executed once:</p>
+<table>
+<thead>
+<tr><th>Executed at</th><th>APLVersion</th><th>Memory (MB)</th></tr>
+</thead>
+<tbody>
+<tr><td>2025-04-06 21:11:06</td><td>Windows-64 ⋄ 19.0.50771.0 ⋄ W ⋄ Development ⋄ Unicode</td><td>115</td></tr>
+</tbody>
+</table>
+<p>Overall 96% of the testable code is covered.</p>
+<p>(Comment lines, empty lines, all <code>:End</code>* lines etc. are ignored)</p>
+<p>49 of the fns/opr are 100% covered.</p>
+<div id="partly-covered" class="keep-together">
+<table id="percent">
+<thead>
+<tr><th style="text-align:left;">Function/Operator</th><th style="text-align:left;">Lines not executed</th><th style="text-align:left;">Coverage</th><th style="text-align:right;">≢</th></tr>
+</thead>
+<tbody>
+<tr class="uncovered"><td><a href="#listing_1" title="Link to listing">#.DateAndTime.DateAndTime.API.History</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_2" title="Link to listing">#.DateAndTime.DateAndTime.API.Version</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr class="uncovered"><td><a href="#listing_3" title="Link to listing">#.DateAndTime.DateAndTime.API.WeekDays</a></td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td><a href="#listing_4" title="Link to listing">#.DateAndTime.DateAndTime.Version</a></td><td>4, 10</td><td>60</td><td>5</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_5" title="Link to listing">#.DateAndTime.DateAndTime.AddPeriod2DateTime</a></td><td></td><td>100</td><td>4</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_6" title="Link to listing">#.DateAndTime.DateAndTime.Date2GregorianSerialDate</a></td><td></td><td>100</td><td>5</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_7" title="Link to listing">#.DateAndTime.DateAndTime.DateFrom_Year_WeekNumberISO</a></td><td></td><td>100</td><td>11</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_8" title="Link to listing">#.DateAndTime.DateAndTime.DateFrom_Year_WeekNumberUS</a></td><td></td><td>100</td><td>8</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_9" title="Link to listing">#.DateAndTime.DateAndTime.DateTime2DayDecimal</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_10" title="Link to listing">#.DateAndTime.DateAndTime.DateTime2Month</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_11" title="Link to listing">#.DateAndTime.DateAndTime.DateTime2Timestamp</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_12" title="Link to listing">#.DateAndTime.DateAndTime.DayDecimal2DateTime</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_13" title="Link to listing">#.DateAndTime.DateAndTime.DayDecimal2Timestamp</a></td><td></td><td>100</td><td>2</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_14" title="Link to listing">#.DateAndTime.DateAndTime.DayOfWeek</a></td><td></td><td>100</td><td>3</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_15" title="Link to listing">#.DateAndTime.DateAndTime.DayOfWeekAsNumber</a></td><td></td><td>100</td><td>2</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_16" title="Link to listing">#.DateAndTime.DateAndTime.DaysInMonth</a></td><td></td><td>100</td><td>3</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_17" title="Link to listing">#.DateAndTime.DateAndTime.Easter</a></td><td></td><td>100</td><td>12</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_18" title="Link to listing">#.DateAndTime.DateAndTime.FileDate2Timestap</a></td><td></td><td>100</td><td>2</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_19" title="Link to listing">#.DateAndTime.DateAndTime.FormatDateTime</a></td><td></td><td>100</td><td>2</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_20" title="Link to listing">#.DateAndTime.DateAndTime.GregorianSerialDate2Date</a></td><td></td><td>100</td><td>17</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_21" title="Link to listing">#.DateAndTime.DateAndTime.Init</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_22" title="Link to listing">#.DateAndTime.DateAndTime.LeapYear</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_23" title="Link to listing">#.DateAndTime.DateAndTime.Month2DateTime</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_24" title="Link to listing">#.DateAndTime.DateAndTime.OrdinalNumber</a></td><td></td><td>100</td><td>3</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_25" title="Link to listing">#.DateAndTime.DateAndTime.Public</a></td><td></td><td>100</td><td>27</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_26" title="Link to listing">#.DateAndTime.DateAndTime.Timestamp2DateTime</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_27" title="Link to listing">#.DateAndTime.DateAndTime.Timestamp2DayDecimal</a></td><td></td><td>100</td><td>2</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_28" title="Link to listing">#.DateAndTime.DateAndTime.WeekDays</a></td><td></td><td>100</td><td>1</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_29" title="Link to listing">#.DateAndTime.DateAndTime.WeekNo_ISO</a></td><td></td><td>100</td><td>10</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_30" title="Link to listing">#.DateAndTime.DateAndTime.WeekNo_US</a></td><td></td><td>100</td><td>2</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_31" title="Link to listing">#.DateAndTime.DateAndTime.API.AddPeriod2DateTime</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_32" title="Link to listing">#.DateAndTime.DateAndTime.API.Date2GregorianSerialDate</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_33" title="Link to listing">#.DateAndTime.DateAndTime.API.DateFrom_Year_WeekNumberISO</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_34" title="Link to listing">#.DateAndTime.DateAndTime.API.DateFrom_Year_WeekNumberUS</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_35" title="Link to listing">#.DateAndTime.DateAndTime.API.DateTime2DayDecimal</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_36" title="Link to listing">#.DateAndTime.DateAndTime.API.DateTime2Month</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_37" title="Link to listing">#.DateAndTime.DateAndTime.API.DateTime2Timestamp</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_38" title="Link to listing">#.DateAndTime.DateAndTime.API.DayDecimal2DateTime</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_39" title="Link to listing">#.DateAndTime.DateAndTime.API.DayDecimal2Timestamp</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_40" title="Link to listing">#.DateAndTime.DateAndTime.API.DayOfWeek</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_41" title="Link to listing">#.DateAndTime.DateAndTime.API.DayOfWeekAsNumber</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_42" title="Link to listing">#.DateAndTime.DateAndTime.API.DaysInMonth</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_43" title="Link to listing">#.DateAndTime.DateAndTime.API.Easter</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_44" title="Link to listing">#.DateAndTime.DateAndTime.API.FileDate2Timestap</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_45" title="Link to listing">#.DateAndTime.DateAndTime.API.FormatDateTime</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_46" title="Link to listing">#.DateAndTime.DateAndTime.API.GregorianSerialDate2Date</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_47" title="Link to listing">#.DateAndTime.DateAndTime.API.LeapYear</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_48" title="Link to listing">#.DateAndTime.DateAndTime.API.Month2DateTime</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_49" title="Link to listing">#.DateAndTime.DateAndTime.API.OrdinalNumber</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_50" title="Link to listing">#.DateAndTime.DateAndTime.API.Timestamp2DateTime</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_51" title="Link to listing">#.DateAndTime.DateAndTime.API.Timestamp2DayDecimal</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_52" title="Link to listing">#.DateAndTime.DateAndTime.API.WeekNo_ISO</a></td><td></td><td>100</td><td>0</td></tr>
+<tr class="fullyCovered"><td><a href="#listing_53" title="Link to listing">#.DateAndTime.DateAndTime.API.WeekNo_US</a></td><td></td><td>100</td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+<script>
+$(document).ready(function() {
+    var oTable;
+    oTable = $("#percent").DataTable( {
+        paging:   false,
+        ordering: true,
+        info:     true,
+        fixedHeader: true,
+        order: [2,"asc"],
+        dom: "Bft",
+        drawCallback: function( settings ) {
+             var api = this.api();
+             $('.header[id^="listing_"]').next().addBack().css("display","none");
+             api.rows( {page:"current"} ).data().each(function(data){
+              id = data[0];
+              id = id.match(/"(\#.*?)"/);
+              if (id){$(id[1]).next().addBack().css("display","block");}
+             })
+        },      
+        buttons: [
+        {
+            text: "Partly covered (1)",
+            titleAttr: "50%",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = "^(?!(0%|100%)).*";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+        {
+            text: "Uncovered (3)",
+            titleAttr: "0%",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = "^0%";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+        {
+            text: "Fully covered (49)",
+            titleAttr: "100%",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = "100%";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+        {
+            text: "All (53)",
+            titleAttr: "all",
+            className: "active",
+            action: function ( e, dt, node, config ) {
+                var text = this.text();
+                var search = ".";
+                oTable.column(2)
+                    .search(search,true,false,false)
+                    .draw();
+                $(".dt-buttons button").removeClass("active");
+                this.active( true );
+            }
+        },
+    ],
+ 
+        columnDefs: [
+            {className: "align-right", targets: [2,3]
+            },
+            {
+                render: function ( data, type, row, meta ) {
+                            return data+"%" ;        
+                        },
+                targets: 2
+            }
+        ]             
+    } );
+    oTable.button(0).trigger();
+
+} );    
+</script>
+<h2>Listings</h2>
+<code class="header" id="listing_1">#.DateAndTime.DateAndTime.API.History &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←History</code>
+<code class="emphasize">→[1]  r←##.History</code>
+</div>
+<code class="header" id="listing_2">#.DateAndTime.DateAndTime.API.Version &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←Version</code>
+<code class="emphasize">→[1]  r←##.Version</code>
+</div>
+<code class="header" id="listing_3">#.DateAndTime.DateAndTime.API.WeekDays &mdash; 0%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←WeekDays</code>
+<code class="emphasize">→[1]  r←##.WeekDays</code>
+</div>
+<code class="header" id="listing_4">#.DateAndTime.DateAndTime.Version &mdash; 60%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←Version</code>
+<code> [1]  ⍝ Returns the version number from `TatinVars` if possible.</code>
+<code> [2]  ⍝ See also `History`</code>
+<code> [3]   :If 0&lt;⎕NC'TatinVars.CONFIG'</code>
+<code class="emphasize">→[4]       r←(⎕JSON⍠('Dialect' 'JSON5')⊢TatinVars.CONFIG).version</code>
+<code> [5]   :ElseIf 0&lt;##.⎕NC'TatinVars.CONFIG'</code>
+<code> [6]       r←(⎕JSON⍠('Dialect' 'JSON5')⊢##.TatinVars.CONFIG).version</code>
+<code> [7]   :Else</code>
+<code> [8]  ⍝ When a script was not loaded with Tatin, there will be no namespace `TatinVars`.</code>
+<code> [9]  ⍝ In such cases we cannot provide a version number, so we return just ''.</code>
+<code class="emphasize">→[10]      r←''</code>
+<code> [11]  :EndIf</code>
+</div>
+<code class="header" id="listing_5">#.DateAndTime.DateAndTime.AddPeriod2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  AddPeriod2DateTime←{</code>
+<code> [1]  ⍝ `⍺` period(s)    - Y [M [D [h [m [s [i]]]]]]   - vector or matrix\\</code>
+<code> [2]  ⍝ `⍵` date.time(s) - yyyymmdd.hhmmssmmm - scalar or vector\\</code>
+<code> [3]  ⍝ `⍺` conforms `⍤ 1 0 ⊢ ⍵`\\</code>
+<code> [4]  ⍝ i.e. each row in `⍺` corresponds to each element in `⍵`\\</code>
+<code> [5]  ⍝ `← date.time ← period ∇ date.time`\\</code>
+<code> [6]  ⍝ Phil Last</code>
+<code> [7]       d←⍉(DateTime2Timestamp ⍵)+∘(7∘↑)⍤1⊢⍺</code>
+<code> [8]       m d←1 0+(0 12)(0 24 60 60 1000){⍺⊤⍺⊥⍵}¨(¯1+2↑d)(2↓d)</code>
+<code> [9]       (1 0 0 0 0⌿d)+←Date2GregorianSerialDate⍉m⍪0</code>
+<code> [10]      Timestamp2DateTime(GregorianSerialDate2Date⊣⌿d),⍉1↓d</code>
+<code> [11]  }</code>
+</div>
+<code class="header" id="listing_6">#.DateAndTime.DateAndTime.Date2GregorianSerialDate &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  Date2GregorianSerialDate←{</code>
+<code> [1]  ⍝ `⍵` yyyy mm dd - 3 cols matrix or a 3 item vector.\\</code>
+<code> [2]  ⍝ `←` dddd       - rank 1\\</code>
+<code> [3]  ⍝ See also [`GregorianSerialDate2Date`](#).\\</code>
+<code> [4]  ⍝ Phil Last</code>
+<code> [5]       y m d←↓⍉↑,↓⍵                            ⍝ separate years months &amp; days</code>
+<code> [6]       Y←{(⍵×365)+(⌊⍵÷4)-(⌊⍵÷100)-⌊⍵÷400}y-1   ⍝ days for full years</code>
+<code> [7]       M←(+\0 0 31 28,10⍴5⍴31 30)[m]           ⍝ days to previous month end</code>
+<code> [8]       M←M+(m&gt;2)∧(0=4|y)&gt;(0=100|y)&gt;(0=400|y)   ⍝ + leap day after Feb</code>
+<code> [9]       (⍵∨.≠0)×Y+M+d                           ⍝ total proleptic gregorian days</code>
+<code> [10]  }</code>
+</div>
+<code class="header" id="listing_7">#.DateAndTime.DateAndTime.DateFrom_Year_WeekNumberISO &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←{day}DateFrom_Year_WeekNumberISO(Y weekNo)</code>
+<code> [1]  ⍝ `⍵` Year and week number (ISO standard)\\</code>
+<code> [2]  ⍝ `⍺` Optional day (as char vector).\\</code>
+<code> [3]  ⍝ `←` Depends on whether "day" was specified or not:\\</code>
+<code> [4]  ⍝ * If "day" was specified the date of that day is returned.</code>
+<code> [5]  ⍝ * If "day" was not specified then the start date of the week is returned.</code>
+<code> [6]  ⍝</code>
+<code> [7]  ⍝ Note that "day" is case sensitive and must be specified as, say, "Sunday".\\</code>
+<code> [8]  ⍝ For details see &lt;https://www.wikiwand.com/en/ISO_week_date#Calculation&gt; \\</code>
+<code> [9]  ⍝ Examples:</code>
+<code> [10] ⍝ ~~~</code>
+<code> [11] ⍝ (2008 9 22)   ←            DateFrom_Year_WeekNumberISO 2008 39</code>
+<code> [12] ⍝ (2015 12 33)  ← 'Saturday' DateFrom_Year_WeekNumberISO 2015 53</code>
+<code> [13] ⍝ ~~~</code>
+<code> [14] ⍝ See also [`WeekNo_ISO`](#).\\</code>
+<code> [15] ⍝ Kai Jaeger</code>
+<code> [16]  :Access Public Shared</code>
+<code> [17]  day←{0&lt;⎕NC ⍵:⍎⍵ ⋄ ''}'day'</code>
+<code> [18]  'Invalid week number'⎕SIGNAL 11/⍨~weekNo∊1+⍳53</code>
+<code> [19]  corr←3+DayOfWeekAsNumber Y 1 4</code>
+<code> [20]  ord←1+(weekNo×7)-corr</code>
+<code> [21]  month←1+1⍳⍨ord&lt;+\DaysInMonth Y</code>
+<code> [22]  :If 0∊⍴day</code>
+<code> [23]      r←Y,month,(ord-+/(1+⍳month-1)DaysInMonth Y)</code>
+<code> [24]  :Else</code>
+<code> [25]      ind←WeekDays⍳⊂day</code>
+<code> [26]      ord+←ind</code>
+<code> [27]      'Invalid day (Monday, ..., Sunday)'⎕SIGNAL 11/⍨ind=⍴WeekDays</code>
+<code> [28]      r←Y,month,(ord-+/(1+⍳month-1)DaysInMonth Y)</code>
+<code> [29]  :EndIf</code>
+</div>
+<code class="header" id="listing_8">#.DateAndTime.DateAndTime.DateFrom_Year_WeekNumberUS &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←{day}DateFrom_Year_WeekNumberUS(Y weekNo)</code>
+<code> [1]  ⍝ `⍵` Year and week number (US method).\\</code>
+<code> [2]  ⍝ `⍺` Optional day (as char vector).\\</code>
+<code> [3]  ⍝ `←` Depends on whether "day" was specified or not:</code>
+<code> [4]  ⍝    * If "day" was specified the date of that day is returned.</code>
+<code> [5]  ⍝    * If "day" was not specified then the start date of the week is returned.</code>
+<code> [6]  ⍝</code>
+<code> [7]  ⍝ Note that "day" is case sensitive and must be specified as, say, "Sunday".\\</code>
+<code> [8]  ⍝ For details see &lt;https://www.wikiwand.com/en/ISO_week_date#Calculation&gt;.\\</code>
+<code> [9]  ⍝ Examples:</code>
+<code> [10] ⍝ ~~~</code>
+<code> [11] ⍝ (2008 9 27) ← 'Saturday' DateFrom_Year_WeekNumberISO_Day 2008 39</code>
+<code> [12] ⍝ (2015 12 28) ← 'Saturday' DateFrom_Year_WeekNumberISO_Day 2015 53</code>
+<code> [13] ⍝ ~~~</code>
+<code> [14] ⍝ See also [`WeekNo_US`](#).\\</code>
+<code> [15] ⍝ Kai Jaeger</code>
+<code> [16]  day←{0&lt;⎕NC ⍵:⍎⍵ ⋄ ''}'day'</code>
+<code> [17]  'Invalid week number'⎕SIGNAL 11/⍨~weekNo∊1+⍳53</code>
+<code> [18]  'Invalid day (Monday, ..., Sunday)'⎕SIGNAL 11/⍨0=+/(⊂day)∊(⊂''),WeekDays</code>
+<code> [19]  fd←DayOfWeek Y 1 1                ⍝ First day</code>
+<code> [20]  fw←(weekNo&gt;1)×7-1+WeekDays⍳fd     ⍝ No of days in first week</code>
+<code> [21]  ord←1++/fw,(0⌈weekNo-2)⍴7         ⍝ Ordinal number of first day</code>
+<code> [22]  month←1+1⍳⍨ord&lt;+\DaysInMonth Y</code>
+<code> [23]  r←Y,month,(ord-+/(month-1)↑DaysInMonth Y)+(~0∊⍴day)×(¯1⌽WeekDays)⍳⊂day</code>
+</div>
+<code class="header" id="listing_9">#.DateAndTime.DateAndTime.DateTime2DayDecimal &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateTime2DayDecimal←{</code>
+<code> [1] ⍝ `⍵` date.time - yyyymmdd.hhmmssmmm    - Scalar or vector\\</code>
+<code> [2] ⍝ `←` days.decs - ddddd.dddddd          - shape ⍴⍵\\</code>
+<code> [3] ⍝ See also [`DayDecimal2DateTime`](#).\\</code>
+<code> [4] ⍝ Phil Last</code>
+<code> [5]      Timestamp2DayDecimal DateTime2Timestamp ⍵</code>
+<code> [6]  }</code>
+</div>
+<code class="header" id="listing_10">#.DateAndTime.DateAndTime.DateTime2Month &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateTime2Month←{</code>
+<code> [1]     ⍝ `⍵` date.time      - shape any\\</code>
+<code> [2]     ⍝ `←` months         - shape ⍴⍵\\</code>
+<code> [3]     ⍝ Origin is 1 Jan 1 bce (for what it's worth)\\</code>
+<code> [4]     ⍝ See also [`Month2DateTime`](#).\\</code>
+<code> [5]     ⍝ Phil Last</code>
+<code> [6]      0 12⊥0 100⊤⌊⍵÷100</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_11">#.DateAndTime.DateAndTime.DateTime2Timestamp &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateTime2Timestamp←{</code>
+<code> [1]     ⍝ `⍵` date.time - yyyymmdd.hhmmssmmm      - Either a simple scalar or a nested vector or a simple matrix\\</code>
+<code> [2]     ⍝ `←` timestamp - yyyy mm dd hh mm ss mmm - shape is 7 for a simple scalar and (⍴,⍵),7 otherwise\\</code>
+<code> [3]     ⍝ See also [`Timestamp2DateTime`](#).\\</code>
+<code> [4]     ⍝ Phil Last</code>
+<code> [5]      ⍉⌊(1 5 1/0,10*2 3)⊤⍉⍵×10*9</code>
+<code> [6]  }</code>
+</div>
+<code class="header" id="listing_12">#.DateAndTime.DateAndTime.DayDecimal2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DayDecimal2DateTime←{</code>
+<code> [1] ⍝ `⍵` days.decs - ddddd.dddddd          - scalar or vector\\</code>
+<code> [2] ⍝ `←` date.time - yyyymmdd.hhmmssmmm    - shape ⍴⍵\\</code>
+<code> [3] ⍝ See also [`DateTime2DayDecimal`](#).\\</code>
+<code> [4] ⍝ Phil Last</code>
+<code> [5]      Timestamp2DateTime DayDecimal2Timestamp ⍵</code>
+<code> [6]  }</code>
+</div>
+<code class="header" id="listing_13">#.DateAndTime.DateAndTime.DayDecimal2Timestamp &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  DayDecimal2Timestamp←{</code>
+<code> [1]      ⍝ `⍵` days.decs ddddd.dddddd            - Scalar or vector\\</code>
+<code> [2]      ⍝ `←` timestamp yyyy mm dd hh mm ss mmm - shape `(⍴⍵),7`\\</code>
+<code> [3]      ⍝ Try:</code>
+<code> [4]      ⍝ ~~~</code>
+<code> [5]      ⍝ `a←(24÷⍨6+2.2×1○2×○(92⌽⍳366)÷366)+(39436+⍳366)`</code>
+<code> [6]      ⍝ `FormatDateTime∘Timestamp2DateTime∘DayDecimal2Timestamp a`</code>
+<code> [7]      ⍝ ~~~</code>
+<code> [8]      ⍝ See also [`Timestamp2DayDecimal`](#).\\</code>
+<code> [9]      ⍝ Phil Last</code>
+<code> [10]      dhm←24 60 60 1000</code>
+<code> [11]      (GregorianSerialDate2Date⌊⍵),⌊⍉dhm⊤⍉(1|⍵)××/dhm</code>
+<code> [12]  }</code>
+</div>
+<code class="header" id="listing_14">#.DateAndTime.DateAndTime.DayOfWeek &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  DayOfWeek←{</code>
+<code> [1]  ⍝ `⍵` can be either a vector with 3 elements (Y M D) or a matrix with</code>
+<code> [2]  ⍝ n rows and 3 columns.\\</code>
+<code> [3]  ⍝ `←` Monday ..., Sunday.\\</code>
+<code> [4]  ⍝ First year in the domain of this function is 1753. Anything earlier is a DOMAIN Error.\\</code>
+<code> [5]  ⍝ See also [`DayOfWeekAsNumber`)(#).\\</code>
+<code> [6]  ⍝ Phil Last</code>
+<code> [7]       1752∧.≥0⌷⍤1⊣⍵:'Year must be 1753 or later'⎕SIGNAL 11</code>
+<code> [8]       gsd←¯1+Date2GregorianSerialDate 3↑⍤1⊣⍵</code>
+<code> [9]       WeekDays[7|gsd]</code>
+<code> [10]  }</code>
+</div>
+<code class="header" id="listing_15">#.DateAndTime.DateAndTime.DayOfWeekAsNumber &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DayOfWeekAsNumber←{</code>
+<code> [1] ⍝ `⍵` date (like `3↑⎕ts`). Can be either a vector with 3 elements (Y M D) or a matrix with</code>
+<code> [2] ⍝ n rows and 3 columns.\\</code>
+<code> [3] ⍝ `←` 1 for Monday, ..., 7 for Sunday.\\</code>
+<code> [4] ⍝ First year in the domain of this function is 1753. Anything earlier is a DOMAIN Error.\\</code>
+<code> [5] ⍝ Kai Jaeger</code>
+<code> [6]      1752∧.≥0⌷⍤1⊣⍵:'Year must be 1753 or later'⎕SIGNAL 11</code>
+<code> [7]      1+7|¯1+Date2GregorianSerialDate 3↑⍤1⊣⍵</code>
+<code> [8]  }</code>
+</div>
+<code class="header" id="listing_16">#.DateAndTime.DateAndTime.DaysInMonth &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←{M}DaysInMonth Y</code>
+<code> [1] ⍝ `⍵` The year. Must be a single integer value.\\</code>
+<code> [2] ⍝ `⍺` Optional: month; If not specified then all 12 months for the year given are returned.\\</code>
+<code> [3] ⍝ `←` Scalar with number of days.\\</code>
+<code> [4] ⍝ Kai Jaeger</code>
+<code> [5]  M←{0&lt;⎕NC ⍵:⍎⍵ ⋄ 1+⍳12}'M'</code>
+<code> [6]  'Invalid month'⎕SIGNAL 11/⍨∨/~M∊1+⍳12</code>
+<code> [7]  r←(31(28+LeapYear Y)31 30 31 30 31 31 30 31 30 31)[M-1]</code>
+</div>
+<code class="header" id="listing_17">#.DateAndTime.DateAndTime.Easter &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  Easter←{</code>
+<code> [1]  ⍝ Easter Sunday in year `⍵`.\\</code>
+<code> [2]  ⍝ John Scholes; see &lt;https://dfns.dyalog.com/n_easter.htm&gt;</code>
+<code> [3]       G←1+19|⍵                ⍝ year "golden number" in 19-year Metonic cycle.</code>
+<code> [4]       C←1+⌊⍵÷100              ⍝ Century: for example 1984 → 20th century.</code>
+<code> [5]  </code>
+<code> [6]       X←¯12+⌊C×3÷4            ⍝ number of years in which leap year omitted.</code>
+<code> [7]       Z←¯5+⌊(5+8×C)÷25        ⍝ synchronises Easter with moon's orbit.</code>
+<code> [8]  </code>
+<code> [9]       S←(⌊(5×⍵)÷4)-X+10       ⍝ find Sunday.</code>
+<code> [10]      E←30|(11×G)+20+Z-X      ⍝ Epact.</code>
+<code> [11]      F←E+(E=24)∨(E=25)∧G&gt;11  ⍝   (when full moon occurs).</code>
+<code> [12] </code>
+<code> [13]      N←(30×F&gt;23)+44-F        ⍝ find full moon.</code>
+<code> [14]      N←N+7-7|S+N             ⍝ advance to Sunday.</code>
+<code> [15] </code>
+<code> [16]      M←3+N&gt;31                ⍝ month: March or April.</code>
+<code> [17]      D←N-31×N&gt;31             ⍝ day within month.</code>
+<code> [18]      ↑10000 100 1+.×⍵ M D    ⍝ yyyymmdd.</code>
+<code> [19]  }</code>
+</div>
+<code class="header" id="listing_18">#.DateAndTime.DateAndTime.FileDate2Timestap &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> FileDate2Timestap←{</code>
+<code> [1] ⍝ filedate to timestamp\\</code>
+<code> [2] ⍝ `⍵` filedate - `⊢/⎕FRDCI - s/60 since 1970 1 1 0 0 0 0`\\</code>
+<code> [3] ⍝ `←` timestamp - shape as `(⍴⍵),7`\\</code>
+<code> [4] ⍝ Phil Last</code>
+<code> [5]      s←719163 ⍝ ts2dd 1970 1 1</code>
+<code> [6]      DayDecimal2Timestamp s+⍵÷×/24 60 60 60</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_19">#.DateAndTime.DateAndTime.FormatDateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> FormatDateTime←{</code>
+<code> [1] ⍝    `((⍴⍵),19)⍴'K6G&lt;9999-99-99 99:99:99&gt;'⎕FMT,⍵`</code>
+<code> [2] ⍝ above gives `2008-02-19 08:11:60 for 20080219.081159910`\\</code>
+<code> [3] ⍝ `⍵` date.time yyyymmdd.hhmmssmmm    - shape any\\</code>
+<code> [4] ⍝ `←` chararray 'yyyy-mm-dd hh:mm:ss' - shape `(⍴⍵),19`\\</code>
+<code> [5] ⍝ Phil Last</code>
+<code> [6]      ⎕CT←0 ⍝ don't let ⌊ round UP</code>
+<code> [7]      ((⍴⍵),19)⍴'O&lt;&gt;G&lt;9999-99-99 99:99:99&gt;'⎕FMT⌊,⍵×10*6</code>
+<code> [8]  }</code>
+</div>
+<code class="header" id="listing_20">#.DateAndTime.DateAndTime.GregorianSerialDate2Date &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  GregorianSerialDate2Date←{</code>
+<code> [1]  ⍝ `⍵` is a gregorian serial date\\</code>
+<code> [2]  ⍝ `←` is a matrix with three columns. The number of rows matches the length of ⍵\\</code>
+<code> [3]  ⍝ See also [`Date2GregorianSerialDate`](#).\\</code>
+<code> [4]  ⍝ Phil Last</code>
+<code> [5]       d←,⍵-1                       ⍝ proleptic gregorian days</code>
+<code> [6]       q c o y←0                    ⍝ local</code>
+<code> [7]       q d∘←↓0 146097⊤d             ⍝ quadricentennium - 400 100 4 1+.×365 1 ¯1 1</code>
+<code> [8]       c d∘←↓0 36524⊤d              ⍝ century          -    100 25 1+.×365 1 ¯1</code>
+<code> [9]       s←c=4                        ⍝ end of quadricentennium</code>
+<code> [10]      o d∘←↓0 1461⊤d               ⍝ quadrennium      -         4 1+.×365 1</code>
+<code> [11]      y d∘←↓0 365⊤d                ⍝ year &amp; day</code>
+<code> [12]      s∨←y=4                       ⍝ end of quadrennium</code>
+<code> [13]      y d+←1+¯1 365×⊂s             ⍝ end of century/quadricentennium</code>
+<code> [14]      y∘←↑q c o y+.×400 100 4 1    ⍝ total years</code>
+<code> [15]      l←=⌿0=4 100 400∘.|y          ⍝ leap year</code>
+<code> [16]      m←(1 31 29,10⍴5⍴31 30)/⍳13   ⍝ a year of months</code>
+<code> [17]      d+←l&lt;d&gt;59                    ⍝ skip 29 Feb for non leap-year</code>
+<code> [18]      m∘←m[d]                      ⍝ month</code>
+<code> [19]      n←+\0 0 31 29,10⍴5⍴31 30     ⍝ days to previous month end</code>
+<code> [20]      d-←n[m]                      ⍝ remainder</code>
+<code> [21]      ((⍴⍵),3)⍴⍉↑(⊂0≠⍵)×y m d      ⍝ yyyy mm dd - 2d</code>
+<code> [22]  }</code>
+</div>
+<code class="header" id="listing_21">#.DateAndTime.DateAndTime.Init &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Init</code>
+<code> [1]  ⎕IO←0 ⋄ ⎕ML←1</code>
+</div>
+<code class="header" id="listing_22">#.DateAndTime.DateAndTime.LeapYear &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> LeapYear←{</code>
+<code> [1] ⍝ Returns 1 in case integer `⍵` represents a leap year otherwise 0.\\</code>
+<code> [2] ⍝ Phil Last</code>
+<code> [3]      0≠.=4 100 400∘.|⍵</code>
+<code> [4]  }</code>
+</div>
+<code class="header" id="listing_23">#.DateAndTime.DateAndTime.Month2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Month2DateTime←{</code>
+<code> [1]     ⍝ `⍵` months       - shape any\\</code>
+<code> [2]     ⍝ `←` date.time    - shape ⍴⍵\\</code>
+<code> [3]     ⍝ See also [`DateTime2Month`](#).\\</code>
+<code> [4]     ⍝ Phil Last</code>
+<code> [5]      101+100×100⊥0 12⊤⍵-1</code>
+<code> [6]  }</code>
+</div>
+<code class="header" id="listing_24">#.DateAndTime.DateAndTime.OrdinalNumber &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  OrdinalNumber←{</code>
+<code> [1]  ⍝ `⍵` can be either a vector with 3 elements (Y M D) or a matrix with n rows and 3 columns.\\</code>
+<code> [2]  ⍝ Returns the ordinal number (= the position within the year) of the give date.\\</code>
+<code> [3]  ⍝ The first of March has an ordinal number of 61 in leap years and 60 otherwise.\\</code>
+<code> [4]  ⍝ The last day of the year has an ordinal number 365 in leap years and 364 otherwise.\\</code>
+<code> [5]  ⍝ Kai Jaeger</code>
+<code> [6]       1752∧.≥0⌷⍤1⊣⍵:'Year must be 1753 or later'⎕SIGNAL 11</code>
+<code> [7]       (Y M D)←↓∘⍉⍣(⊃2=⍴⍴⍵)⊣⍵</code>
+<code> [8]       D+Y{+/(1+⍳⍵)DaysInMonth ⍺}¨M-1</code>
+<code> [9]   }</code>
+</div>
+<code class="header" id="listing_25">#.DateAndTime.DateAndTime.Public &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←Public</code>
+<code> [1]   r←''</code>
+<code> [2]   r,←⊂'Version'</code>
+<code> [3]   r,←⊂'History'</code>
+<code> [4]   r,←⊂'AddPeriod2DateTime'</code>
+<code> [5]   r,←⊂'Date2GregorianSerialDate'</code>
+<code> [6]   r,←⊂'DateFrom_Year_WeekNumberISO'</code>
+<code> [7]   r,←⊂'DateFrom_Year_WeekNumberUS'</code>
+<code> [8]   r,←⊂'DateTime2DayDecimal'</code>
+<code> [9]   r,←⊂'DateTime2Month'</code>
+<code> [10]  r,←⊂'DateTime2Timestamp'</code>
+<code> [11]  r,←⊂'DayDecimal2DateTime'</code>
+<code> [12]  r,←⊂'DayDecimal2Timestamp'</code>
+<code> [13]  r,←⊂'DayOfWeek'</code>
+<code> [14]  r,←⊂'DayOfWeekAsNumber'</code>
+<code> [15]  r,←⊂'DaysInMonth'</code>
+<code> [16]  r,←⊂'Easter'</code>
+<code> [17]  r,←⊂'FileDate2Timestap'</code>
+<code> [18]  r,←⊂'FormatDateTime'</code>
+<code> [19]  r,←⊂'GregorianSerialDate2Date'</code>
+<code> [20]  r,←⊂'LeapYear'</code>
+<code> [21]  r,←⊂'Month2DateTime'</code>
+<code> [22]  r,←⊂'OrdinalNumber'</code>
+<code> [23]  r,←⊂'Timestamp2DateTime'</code>
+<code> [24]  r,←⊂'Timestamp2DayDecimal'</code>
+<code> [25]  r,←⊂'WeekDays'</code>
+<code> [26]  r,←⊂'WeekNo_ISO'</code>
+<code> [27]  r,←⊂'WeekNo_US'</code>
+</div>
+<code class="header" id="listing_26">#.DateAndTime.DateAndTime.Timestamp2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Timestamp2DateTime←{</code>
+<code> [1]     ⍝ `⍵` timestamp - yyyy mm dd [hh [mm [ss [mmm]]]] - Either a simple vector or a simple matrix\\</code>
+<code> [2]     ⍝ `←` date.time - yyyymmdd.hhmmssmmm              - shape `¯1↓⍴⍵`\\</code>
+<code> [3]     ⍝ Does not support negatives.\\</code>
+<code> [4]     ⍝ See also [`DateTime2Timestamp`](#).\\</code>
+<code> [5]     ⍝ Phil Last</code>
+<code> [6]      ⍉1E¯9×(1 5 1/0,10*2 3)⊥⍉7↑[0⊥⍳⍴⍴⍵]⍵</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_27">#.DateAndTime.DateAndTime.Timestamp2DayDecimal &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Timestamp2DayDecimal←{</code>
+<code> [1] ⍝ `⍵` timestamp yyyy mm dd [hh [mm [ss [mmm]]]] - Either a simple vector or a simple matrix.\\</code>
+<code> [2] ⍝ `←` days.decs ddddd.dddddd                    - shape `¯1↓⍴⍵`\\</code>
+<code> [3] ⍝ 1899-12-31 00:00 `→` 0 - a year and a day before the end of the 19th century!\\</code>
+<code> [4] ⍝ See also [`DayDecimal2Timestamp`](#).\\</code>
+<code> [5] ⍝ Phil Last</code>
+<code> [6]      dhm←24 60 60 1000</code>
+<code> [7]      (¯1↓⍴⍵)⍴⊃{(Date2GregorianSerialDate ⍺)+(⍉dhm⊥⍉⍵)÷×/dhm}/1 0 0 1 0 0 0⊂7↑[0⊥⍳⍴⍴⍵]⍵</code>
+<code> [8]  }</code>
+</div>
+<code class="header" id="listing_28">#.DateAndTime.DateAndTime.WeekDays &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> r←WeekDays</code>
+<code> [1]  r←'Monday' 'Tuesday' 'Wednesday' 'Thursday' 'Friday' 'Saturday' 'Sunday'</code>
+</div>
+<code class="header" id="listing_29">#.DateAndTime.DateAndTime.WeekNo_ISO &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code>  r←WeekNo_ISO yyyy_mm_dd</code>
+<code> [1]  ⍝ Calculates the week number according to the ISO standard.\\</code>
+<code> [2]  ⍝ See &lt;https://www.wikiwand.com/en/ISO_week_date&gt; for details.\\</code>
+<code> [3]  ⍝ See also `DateFrom_Year_WeekNumberISO`.\\</code>
+<code> [4]  ⍝ Example:\\</code>
+<code> [5]  ⍝ `39 ← WeekNo_ISO 2008 9 22`\\</code>
+<code> [6]  ⍝ Kai Jaeger</code>
+<code> [7]   :Access Public Shared</code>
+<code> [8]   Calc←{⌊(10+(OrdinalNumber ⍵)-DayOfWeekAsNumber ⍵)÷7}</code>
+<code> [9]   r←Calc yyyy_mm_dd</code>
+<code> [10]  b1←r=0</code>
+<code> [11]  b2←r=53</code>
+<code> [12]  :If ∨/b1</code>
+<code> [13]      (b1/r)←Calc((b1/¯1+0⌷⍤1⊣yyyy_mm_dd),[0.5]12),31</code>
+<code> [14]  :EndIf</code>
+<code> [15]  :If ∨/b2</code>
+<code> [16]  :AndIf 0∧.≠r2←Calc((b2/1+0⌷⍤1⊣yyyy_mm_dd),[0.5]1),1</code>
+<code> [17]      b2∧←b2\r2≠0</code>
+<code> [18]      (b2/r)←(0≠r2)/r2</code>
+<code> [19]  :EndIf</code>
+</div>
+<code class="header" id="listing_30">#.DateAndTime.DateAndTime.WeekNo_US &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> WeekNo_US←{</code>
+<code> [1] ⍝ Calculates the week number according to the US standard.\\</code>
+<code> [2] ⍝ See &lt;https://www.wikiwand.com/en/ISO_week_date#Other_week_numbering_systems&gt; for details.\\</code>
+<code> [3] ⍝ See also [`DateFrom_Year_WeekNumberUS`](#).\\</code>
+<code> [4] ⍝ Kai Jaeger</code>
+<code> [5]      days←DayOfWeekAsNumber↑⍵[0]{⍺,1,⍵}¨1+⍳7</code>
+<code> [6]      (¯1+OrdinalNumber ⍵)⊃(1⍴⍨1+days⍳6),⊃,/7⍴¨2+⍳52</code>
+<code> [7]  }</code>
+</div>
+<code class="header" id="listing_31">#.DateAndTime.DateAndTime.API.AddPeriod2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> AddPeriod2DateTime←{⍺←⊢ ⋄ 1:shy←⍺ ##.AddPeriod2DateTime ⍵}</code>
+</div>
+<code class="header" id="listing_32">#.DateAndTime.DateAndTime.API.Date2GregorianSerialDate &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Date2GregorianSerialDate←{⍺←⊢ ⋄ 1:shy←⍺ ##.Date2GregorianSerialDate ⍵}</code>
+</div>
+<code class="header" id="listing_33">#.DateAndTime.DateAndTime.API.DateFrom_Year_WeekNumberISO &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateFrom_Year_WeekNumberISO←{⍺←⊢ ⋄ ⍺ ##.DateFrom_Year_WeekNumberISO ⍵}</code>
+</div>
+<code class="header" id="listing_34">#.DateAndTime.DateAndTime.API.DateFrom_Year_WeekNumberUS &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateFrom_Year_WeekNumberUS←{⍺←⊢ ⋄ ⍺ ##.DateFrom_Year_WeekNumberUS ⍵}</code>
+</div>
+<code class="header" id="listing_35">#.DateAndTime.DateAndTime.API.DateTime2DayDecimal &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateTime2DayDecimal←{⍺←⊢ ⋄ 1:shy←⍺ ##.DateTime2DayDecimal ⍵}</code>
+</div>
+<code class="header" id="listing_36">#.DateAndTime.DateAndTime.API.DateTime2Month &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateTime2Month←{⍺←⊢ ⋄ 1:shy←⍺ ##.DateTime2Month ⍵}</code>
+</div>
+<code class="header" id="listing_37">#.DateAndTime.DateAndTime.API.DateTime2Timestamp &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DateTime2Timestamp←{⍺←⊢ ⋄ 1:shy←⍺ ##.DateTime2Timestamp ⍵}</code>
+</div>
+<code class="header" id="listing_38">#.DateAndTime.DateAndTime.API.DayDecimal2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DayDecimal2DateTime←{⍺←⊢ ⋄ 1:shy←⍺ ##.DayDecimal2DateTime ⍵}</code>
+</div>
+<code class="header" id="listing_39">#.DateAndTime.DateAndTime.API.DayDecimal2Timestamp &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DayDecimal2Timestamp←{⍺←⊢ ⋄ 1:shy←⍺ ##.DayDecimal2Timestamp ⍵}</code>
+</div>
+<code class="header" id="listing_40">#.DateAndTime.DateAndTime.API.DayOfWeek &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DayOfWeek←{⍺←⊢ ⋄ 1:shy←⍺ ##.DayOfWeek ⍵}</code>
+</div>
+<code class="header" id="listing_41">#.DateAndTime.DateAndTime.API.DayOfWeekAsNumber &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DayOfWeekAsNumber←{⍺←⊢ ⋄ 1:shy←⍺ ##.DayOfWeekAsNumber ⍵}</code>
+</div>
+<code class="header" id="listing_42">#.DateAndTime.DateAndTime.API.DaysInMonth &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> DaysInMonth←{⍺←⊢ ⋄ ⍺ ##.DaysInMonth ⍵}</code>
+</div>
+<code class="header" id="listing_43">#.DateAndTime.DateAndTime.API.Easter &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Easter←{⍺←⊢ ⋄ 1:shy←⍺ ##.Easter ⍵}</code>
+</div>
+<code class="header" id="listing_44">#.DateAndTime.DateAndTime.API.FileDate2Timestap &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> FileDate2Timestap←{⍺←⊢ ⋄ 1:shy←⍺ ##.FileDate2Timestap ⍵}</code>
+</div>
+<code class="header" id="listing_45">#.DateAndTime.DateAndTime.API.FormatDateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> FormatDateTime←{⍺←⊢ ⋄ 1:shy←⍺ ##.FormatDateTime ⍵}</code>
+</div>
+<code class="header" id="listing_46">#.DateAndTime.DateAndTime.API.GregorianSerialDate2Date &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> GregorianSerialDate2Date←{⍺←⊢ ⋄ 1:shy←⍺ ##.GregorianSerialDate2Date ⍵}</code>
+</div>
+<code class="header" id="listing_47">#.DateAndTime.DateAndTime.API.LeapYear &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> LeapYear←{⍺←⊢ ⋄ 1:shy←⍺ ##.LeapYear ⍵}</code>
+</div>
+<code class="header" id="listing_48">#.DateAndTime.DateAndTime.API.Month2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Month2DateTime←{⍺←⊢ ⋄ 1:shy←⍺ ##.Month2DateTime ⍵}</code>
+</div>
+<code class="header" id="listing_49">#.DateAndTime.DateAndTime.API.OrdinalNumber &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> OrdinalNumber←{⍺←⊢ ⋄ 1:shy←⍺ ##.OrdinalNumber ⍵}</code>
+</div>
+<code class="header" id="listing_50">#.DateAndTime.DateAndTime.API.Timestamp2DateTime &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Timestamp2DateTime←{⍺←⊢ ⋄ 1:shy←⍺ ##.Timestamp2DateTime ⍵}</code>
+</div>
+<code class="header" id="listing_51">#.DateAndTime.DateAndTime.API.Timestamp2DayDecimal &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> Timestamp2DayDecimal←{⍺←⊢ ⋄ 1:shy←⍺ ##.Timestamp2DayDecimal ⍵}</code>
+</div>
+<code class="header" id="listing_52">#.DateAndTime.DateAndTime.API.WeekNo_ISO &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> WeekNo_ISO←{##.WeekNo_ISO ⍵}</code>
+</div>
+<code class="header" id="listing_53">#.DateAndTime.DateAndTime.API.WeekNo_US &mdash; 100%<a class="float-right no-print no-underline top-links" href="#top" title="Go to the top of the document">&#8607;</a><a  class="float-right no-print no-underline top-links" href="#partly-covered" title="Go to the beginning of 'Partly-covered'">↑</a></code>
+<div class="code-block"><code> WeekNo_US←{⍺←⊢ ⋄ 1:shy←⍺ ##.WeekNo_US ⍵}</code>
+</div>
+<div id="footer">
+<hr>
+<p>Created by "CodeCoverage" version 0.10.7+52 from 2024-06-05</p>
+</div>
+
+</body>
+</html>
